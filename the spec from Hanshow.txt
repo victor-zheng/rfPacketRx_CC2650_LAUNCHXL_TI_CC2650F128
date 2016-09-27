@@ -1,0 +1,31 @@
+rfc_CMD_PROP_RADIO_SETUP_t RF_cmdPropRadioDivSetup =
+{
+    .commandNo = 0x3806,
+    .status = 0x0000,
+    .pNextOp = 0, // INSERT APPLICABLE POINTER: (uint8_t*)&xxx
+    .startTime = 0x00000000,
+    .startTrigger.triggerType = 0x0,
+    .startTrigger.bEnaCmd = 0x0,
+    .startTrigger.triggerNo = 0x0,
+    .startTrigger.pastTrig = 0x0,
+    .condition.rule = 0x1,
+    .condition.nSkip = 0x0,
+    .modulation.modType = 0x1,      //GFSK
+    .modulation.deviation = 200,    //186K = 186000/250 = 744
+    .symbolRate.preScale = 15,      //BD=(rateWord*24000000)/(preScale*524288)=400K
+    .symbolRate.rateWord = 131072,  //
+    .rxBw = 7,                      //for 500kbps receive data rate
+    .preamConf.nPreamBytes = 0x8,   //4 byte = 4
+    .preamConf.preamMode = 0x0,     //Send same first bit in preamble and sync word
+    .formatConf.nSwBits = 16,       //4 byte=32
+    .formatConf.bBitReversal = 0x0, //
+    .formatConf.bMsbFirst = 0x1,    //0x01
+    .formatConf.fecMode = 0x0,      //0x00
+    .formatConf.whitenMode = 0x0,   //0x00
+    .config.frontEndMode = 0x0,
+    .config.biasMode = 0x0,
+    .config.analogCfgMode = 0x0,
+    .config.bNoFsPowerUp = 0x0,
+    .txPower = 0x003F,
+    .pRegOverride = pOverrides,     //CCITT-16 CRC (x16 + x15 + x2 + 1)
+};
