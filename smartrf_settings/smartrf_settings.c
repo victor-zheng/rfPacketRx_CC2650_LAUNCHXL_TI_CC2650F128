@@ -44,8 +44,8 @@ RF_Mode RF_prop =
 };
 
 
-uint32_t shape[] = {0x00000000, 0x00000000, 0x00000000, 0x360c0100, 0xacaba076, 0xacacacac};
-
+//uint32_t shape[] = {0x00000000, 0x00000000, 0x00000000, 0x360c0100, 0xacaba076, 0xacacacac};
+uint32_t shape[] = {0x00000000, 0x03020100, 0x160F0A06, 0x46382B20, 0x7B706355, 0x918F8B84};
 
 // Overrides for CMD_PROP_RADIO_SETUP
 uint32_t pOverrides[] = {
@@ -91,13 +91,13 @@ rfc_CMD_PROP_RADIO_SETUP_t RF_cmdPropRadioDivSetup =
     .condition.rule = 0x1,
     .condition.nSkip = 0x0,
     .modulation.modType = 0x1,
-    .modulation.deviation = 200,
+    .modulation.deviation = 744,
     .symbolRate.preScale = 15,
-    .symbolRate.rateWord = 131072,
-    .rxBw = 7,
-    .preamConf.nPreamBytes = 0x8,
-    .preamConf.preamMode = 0x0,
-    .formatConf.nSwBits = 16,
+    .symbolRate.rateWord = 65536,
+    .rxBw = 10,
+    .preamConf.nPreamBytes = 0x4,
+    .preamConf.preamMode = 0x02,
+    .formatConf.nSwBits = 32,
     .formatConf.bBitReversal = 0x0,
     .formatConf.bMsbFirst = 0x1,
     .formatConf.fecMode = 0x0,
@@ -123,7 +123,7 @@ rfc_CMD_FS_t RF_cmdFs =
     .startTrigger.pastTrig = 0x0,
     .condition.rule = 0x1,
     .condition.nSkip = 0x0,
-    .frequency = 2440,
+    .frequency = 2401,
     .fractFreq = 0x0000,
     .synthConf.bTxMode = 1,
     .synthConf.refFreq = 0x0,
@@ -146,7 +146,8 @@ rfc_CMD_PROP_TX_t RF_cmdPropTx =
     .pktConf.bUseCrc = 0x1,
     .pktConf.bVarLen = 0x1,
     .pktLen = 0x1e, // SET APPLICATION PAYLOAD LENGTH
-    .syncWord = 0xD391D391,
+    .syncWord = 0x954e954e,
+	//.syncWord = 0x52567854,
     .pPkt = 0, // INSERT APPLICABLE POINTER: (uint8_t*)&xxx
 };
 
@@ -166,20 +167,21 @@ rfc_CMD_PROP_RX_t RF_cmdPropRx =
     .pktConf.bFsOff = 0x0,
     .pktConf.bRepeatOk = 0x0,
     .pktConf.bRepeatNok = 0x0,
-    .pktConf.bUseCrc = 0x1,
-    .pktConf.bVarLen = 0x1,
+    .pktConf.bUseCrc = 0x0,
+    .pktConf.bVarLen = 0x0,
     .pktConf.bChkAddress = 0x0,
     .pktConf.endType = 0x0,
     .pktConf.filterOp = 0x0,
     .rxConf.bAutoFlushIgnored = 0x0,
     .rxConf.bAutoFlushCrcErr = 0x0,
-    .rxConf.bIncludeHdr = 0x1,
+    .rxConf.bIncludeHdr = 0x0,
     .rxConf.bIncludeCrc = 0x0,
     .rxConf.bAppendRssi = 0x0,
     .rxConf.bAppendTimestamp = 0x0,
     .rxConf.bAppendStatus = 0x1,
-    .syncWord = 0xD391D391,
-    .maxPktLen = 0x7d, // MAKE SURE DATA ENTRY IS LARGE ENOUGH
+    //.syncWord = 0x954e954e,
+	.syncWord = 0x52567854,
+    .maxPktLen = 0x12, // MAKE SURE DATA ENTRY IS LARGE ENOUGH
     .address0 = 0xaa,
     .address1 = 0xbb,
     .endTrigger.triggerType = 0x1,
