@@ -74,6 +74,10 @@ uint32_t pOverrides[] = {
         (uint32_t) 0x00008463,
         (uint32_t) 0x00388473,
         (uint32_t) 0x00F388a3,
+		HW32_ARRAY_OVERRIDE(0x2004, 1), // configure new CRC16 poly (=0x40012005 in pure hex)
+		0x10210000, // new CRC16 poly: CRC-16-CCITT normal form, 0x1021 is x^16 + x^15 + x^5 + 1
+		0xC0040051, // CRC initialization (address)
+		0x1D0F0000,//0x00000000,//0x1D0F0000, // CRC initialization (value)
         (uint32_t)0xFFFFFFFF,
 };
 
@@ -167,7 +171,7 @@ rfc_CMD_PROP_RX_t RF_cmdPropRx =
     .pktConf.bFsOff = 0x0,
     .pktConf.bRepeatOk = 0x0,
     .pktConf.bRepeatNok = 0x0,
-    .pktConf.bUseCrc = 0x0,
+    .pktConf.bUseCrc = 0x1,
     .pktConf.bVarLen = 0x0,
     .pktConf.bChkAddress = 0x0,
     .pktConf.endType = 0x0,
@@ -176,12 +180,12 @@ rfc_CMD_PROP_RX_t RF_cmdPropRx =
     .rxConf.bAutoFlushCrcErr = 0x0,
     .rxConf.bIncludeHdr = 0x1,
     .rxConf.bIncludeCrc = 0x1,
-    .rxConf.bAppendRssi = 0x0,
-    .rxConf.bAppendTimestamp = 0x0,
+    .rxConf.bAppendRssi = 0x1,
+    .rxConf.bAppendTimestamp = 0x1,
     .rxConf.bAppendStatus = 0x1,
     .syncWord = 0x954e954e,
 	//.syncWord = 0x52567854,
-    .maxPktLen = 0x12, // MAKE SURE DATA ENTRY IS LARGE ENOUGH
+    .maxPktLen = 0x10, // MAKE SURE DATA ENTRY IS LARGE ENOUGH
     .address0 = 0xaa,
     .address1 = 0xbb,
     .endTrigger.triggerType = 0x1,

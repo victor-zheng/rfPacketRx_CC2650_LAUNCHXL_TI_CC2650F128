@@ -156,7 +156,7 @@ static void rxTaskFunction(UArg arg0, UArg arg1)
     RF_cmdPropRx.pQueue = &dataQueue;           /* Set the Data Entity queue for received data */
     RF_cmdPropRx.rxConf.bAutoFlushIgnored = 1;  /* Discard ignored packets from Rx queue */
     RF_cmdPropRx.rxConf.bAutoFlushCrcErr = 1;   /* Discard packets with CRC error from Rx queue */
-    RF_cmdPropRx.maxPktLen = 0x12;        /* Implement packet length filtering to avoid PROP_ERROR_RXBUF */
+    RF_cmdPropRx.maxPktLen = 0x10;        /* Implement packet length filtering to avoid PROP_ERROR_RXBUF */
     RF_cmdPropRx.pktConf.bRepeatOk = 1;
     RF_cmdPropRx.pktConf.bRepeatNok = 1;
 
@@ -185,7 +185,7 @@ void callback(RF_Handle h, RF_CmdHandle ch, RF_EventMask e)
         /* Handle the packet data, located at &currentDataEntry->data:
          * - Length is the first byte with the current configuration
          * - Data starts from the second byte */
-        packetLength      = 0x12;
+        packetLength      = 0x1D;
         packetDataPointer = (uint8_t*)(&currentDataEntry->data);
 
         /* Copy the payload + the status byte to the packet variable */
